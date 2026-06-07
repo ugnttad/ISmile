@@ -2,11 +2,11 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 export const LANGUAGE_OPTIONS = [
-  { code: 'vi', short: 'VI', label: 'Tiếng Việt' },
-  { code: 'en', short: 'EN', label: 'English' },
-  { code: 'ja', short: 'JA', label: '日本語' },
-  { code: 'zh', short: 'ZH', label: '中文' },
-  { code: 'fr', short: 'FR', label: 'Français' },
+  { code: 'vi', short: 'VI', label: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'en', short: 'EN', label: 'English', flag: '🇬🇧' },
+  { code: 'ja', short: 'JA', label: '日本語', flag: '🇯🇵' },
+  { code: 'zh', short: 'ZH', label: '中文', flag: '🇨🇳' },
+  { code: 'fr', short: 'FR', label: 'Français', flag: '🇫🇷' },
 ];
 
 const translations = {

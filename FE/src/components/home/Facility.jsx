@@ -75,13 +75,33 @@ export default function Facility() {
           </div>
         </div>
 
-        <div className="mt-5 overflow-hidden rounded-lg border border-sky-100 bg-white p-2 shadow-[0_22px_64px_rgba(6,120,201,0.1)] dark:border-sky-300/15 dark:bg-[#0d2237]">
-          <ImageWithBlur
-            src={CLINIC_IMAGES.lobby}
-            alt={t('facility.lobbyAlt')}
-            className="h-72 w-full rounded-md lg:h-96"
-            imageClassName="object-center"
-          />
+        <div className="mt-5 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="overflow-hidden rounded-lg border border-sky-100 bg-white p-2 shadow-[0_22px_64px_rgba(6,120,201,0.1)] dark:border-sky-300/15 dark:bg-[#0d2237]">
+            <ImageWithBlur
+              src={CLINIC_IMAGES.treatmentRoom}
+              alt={t('facility.lobbyAlt')}
+              className="h-72 w-full rounded-md lg:h-[440px]"
+              imageClassName="object-center"
+            />
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="overflow-hidden rounded-lg border border-sky-100 bg-white p-2 shadow-[0_18px_48px_rgba(6,120,201,0.1)] dark:border-sky-300/15 dark:bg-[#0d2237]">
+              <ImageWithBlur
+                src={CLINIC_IMAGES.reception}
+                alt={facilityCopy[1].title}
+                className="h-52 w-full rounded-md"
+                imageClassName="object-center"
+              />
+            </div>
+            <div className="overflow-hidden rounded-lg border border-sky-100 bg-white p-2 shadow-[0_18px_48px_rgba(6,120,201,0.1)] dark:border-sky-300/15 dark:bg-[#0d2237]">
+              <ImageWithBlur
+                src={CLINIC_IMAGES.rose}
+                alt={facilityCopy[2].title}
+                className="h-52 w-full rounded-md"
+                imageClassName="object-center"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

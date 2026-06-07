@@ -87,7 +87,7 @@ export default function Header() {
               >
                 {LANGUAGE_OPTIONS.map((item) => (
                   <option key={item.code} value={item.code}>
-                    {item.short}
+                    {item.flag} {item.short}
                   </option>
                 ))}
               </select>
@@ -135,7 +135,7 @@ export default function Header() {
             >
               {LANGUAGE_OPTIONS.map((item) => (
                 <option key={item.code} value={item.code}>
-                  {item.label}
+                  {item.flag} {item.label}
                 </option>
               ))}
             </select>
