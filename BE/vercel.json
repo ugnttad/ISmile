@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "npm install",
+  "public": false,
+  "functions": {
+    "api/index.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "CORS_ORIGIN": "@cors_origin",
+    "JWT_SECRET": "@jwt_secret",
+    "JWT_EXPIRE": "@jwt_expire"
+  }
+}
