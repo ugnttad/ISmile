@@ -1,0 +1,12 @@
+{
+  "name": "ismile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:fe": "npm run dev --prefix FE",
+    "dev:be": "npm run dev --prefix BE",
+    "build:fe": "npm run build --prefix FE",
+    "db:migrate": "npm run db:migrate --prefix BE",
+    "db:seed": "npm run db:seed --prefix BE"
+  }
+}
