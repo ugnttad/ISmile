@@ -4,6 +4,10 @@ import PublicLayout from './components/layout/PublicLayout';
 import AdminLayout from './components/admin/AdminLayout';
 import HomePage from './pages/HomePage';
 import BookingPage from './pages/BookingPage';
+import ServicesPage from './pages/ServicesPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import TeamPage from './pages/TeamPage';
+import FacilityPage from './pages/FacilityPage';
 import LoginPage from './pages/admin/LoginPage';
 import DashboardPage from './pages/admin/DashboardPage';
 import AppointmentsPage from './pages/admin/AppointmentsPage';
@@ -17,6 +21,10 @@ export default function App() {
           <Routes>
             <Route element={<PublicLayout />}>
               <Route index element={<HomePage />} />
+              <Route path="dich-vu" element={<ServicesPage />} />
+              <Route path="dich-vu/:slug" element={<ServiceDetailPage />} />
+              <Route path="doi-ngu" element={<TeamPage />} />
+              <Route path="co-so" element={<FacilityPage />} />
               <Route path="dat-lich" element={<BookingPage />} />
             </Route>
 

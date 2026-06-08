@@ -1,5 +1,6 @@
 const CDN = 'https://nhakhoaismile.vn/wp-content';
 const CAMPAIGN_ASSETS = '/campaigns';
+const SERVICE_ASSETS = '/services';
 
 export const IMAGES = {
   logo: `${CDN}/uploads/2025/11/logo.svg`,
@@ -17,11 +18,11 @@ export const CLINIC_IMAGES = {
 };
 
 export const SERVICE_IMAGES = {
-  implant: `${CDN}/smush-webp/2026/02/Gemini_Generated_Image_oyv1y6oyv1y6oyv1-1.png.webp`,
-  braces: `${CDN}/smush-webp/2026/02/Niengranggg.png.webp`,
-  composite: `${CDN}/smush-webp/2026/02/Tramrangcomposite.png.webp`,
+  implant: `${SERVICE_ASSETS}/implant.webp`,
+  braces: `${SERVICE_ASSETS}/nieng-rang.webp`,
+  composite: `${SERVICE_ASSETS}/tram-rang-composite.webp`,
   crown: `${CDN}/smush-webp/2026/02/trongrangsu.jpg.webp`,
-  veneer: `${CDN}/smush-webp/2026/04/matdavennergemini-1.png.webp`,
+  veneer: `${SERVICE_ASSETS}/dan-su-veneer.webp`,
 };
 
 export const DOCTOR_IMAGES = {

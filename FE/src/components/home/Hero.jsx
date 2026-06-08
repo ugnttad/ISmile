@@ -49,12 +49,12 @@ export default function Hero() {
                 {t('common.bookVisit')}
                 <ArrowRight className="h-5 w-5" />
               </Link>
-              <a
-                href="#dich-vu"
+              <Link
+                to="/dich-vu"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-sky-200 bg-white px-7 py-4 font-black text-primary shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-accent dark:border-sky-300/15 dark:bg-white/5 dark:text-primary-light dark:hover:bg-white/10"
               >
                 {t('hero.explore')}
-              </a>
+              </Link>
             </div>
           </div>
 

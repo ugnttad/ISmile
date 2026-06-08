@@ -15,9 +15,9 @@ function FacebookIcon(props) {
 export default function Footer() {
   const { t } = useUiPreferences();
   const infoLinks = [
-    { href: '/#dich-vu', label: t('footer.infoLinks.0') },
-    { href: '/#bac-si', label: t('footer.infoLinks.1') },
-    { href: '/#co-so', label: t('footer.infoLinks.2') },
+    { href: '/dich-vu', label: t('footer.infoLinks.0') },
+    { href: '/doi-ngu', label: t('footer.infoLinks.1') },
+    { href: '/co-so', label: t('footer.infoLinks.2') },
     { href: '/dat-lich', label: t('footer.infoLinks.3') },
   ];
   const serviceLinks = t('footer.serviceLinks');
