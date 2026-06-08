@@ -22,6 +22,11 @@ export default function Header() {
   const navLinks = getNavLinks(t);
   const themeLabel = theme === 'dark' ? t('common.themeLight') : t('common.themeDark');
 
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+    setOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-sky-100 bg-white/95 shadow-[0_10px_34px_rgba(6,120,201,0.08)] backdrop-blur-xl dark:border-sky-300/15 dark:bg-[#071827]/95">
       <div className="hidden bg-primary text-white dark:bg-[#082f49] lg:block">
@@ -45,13 +50,14 @@ export default function Header() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-3 lg:h-20">
-          <Link to="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)}>
+          <Link to="/" className="flex shrink-0 items-center gap-2" onClick={handleScrollToTop}>
             <img src={IMAGES.logo} alt="Nha Khoa iSmile" className="h-10 w-auto lg:h-12" />
           </Link>
 
           <nav className="hidden items-center gap-1 rounded-lg bg-sky-50/80 p-1 ring-1 ring-sky-100 dark:bg-white/5 dark:ring-sky-300/15 lg:flex">
             <Link
               to="/"
+              onClick={handleScrollToTop}
               className="rounded-md px-4 py-2 text-sm font-semibold text-slate-600 transition-all hover:bg-white hover:text-primary hover:shadow-sm dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-primary-light"
             >
               {t('nav.home')}
@@ -184,7 +190,7 @@ export default function Header() {
           <Link
             to="/"
             className="block rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-accent hover:text-primary dark:text-slate-100 dark:hover:bg-white/10 dark:hover:text-primary-light"
-            onClick={() => setOpen(false)}
+            onClick={handleScrollToTop}
           >
             {t('nav.home')}
           </Link>
