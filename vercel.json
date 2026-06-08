@@ -1,0 +1,11 @@
+{
+  "installCommand": "npm install --prefix FE",
+  "buildCommand": "npm run build --prefix FE",
+  "outputDirectory": "FE/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
