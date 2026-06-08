@@ -1,0 +1,101 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "_Known",
+        "kind": 6,
+        "importPath": "FE.node_modules.flatted.python.flatted",
+        "description": "FE.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    for i in range(len(value)):\n        yield i",
+        "detail": "FE.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "_String",
+        "kind": 6,
+        "importPath": "FE.node_modules.flatted.python.flatted",
+        "description": "FE.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    for i in range(len(value)):\n        yield i\ndef _object_keys(value):\n    for key in value:\n        yield key\ndef _is_array(value):",
+        "detail": "FE.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "parse",
+        "kind": 2,
+        "importPath": "FE.node_modules.flatted.python.flatted",
+        "description": "FE.node_modules.flatted.python.flatted",
+        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
+        "detail": "FE.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "FE.node_modules.flatted.python.flatted",
+        "description": "FE.node_modules.flatted.python.flatted",
+        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
+        "detail": "FE.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "file_path",
+        "kind": 5,
+        "importPath": "fix_quotes",
+        "description": "fix_quotes",
+        "peekOfCode": "file_path = r'FE\\src\\context\\UiPreferencesContext.jsx'\nwith open(file_path, 'r', encoding='utf-8') as f:\n    content = f.read()\n# Replace fancy quotes with regular ones\ncontent = content.replace(''', \"'\")  # Right single quotation mark\ncontent = content.replace(''', \"'\")  # Left single quotation mark\ncontent = content.replace('\"', '\"')  # Left double quotation mark\ncontent = content.replace('\"', '\"')  # Right double quotation mark\nwith open(file_path, 'w', encoding='utf-8') as f:\n    f.write(content)",
+        "detail": "fix_quotes",
+        "documentation": {}
+    },
+    {
+        "label": "content",
+        "kind": 5,
+        "importPath": "fix_quotes",
+        "description": "fix_quotes",
+        "peekOfCode": "content = content.replace(''', \"'\")  # Right single quotation mark\ncontent = content.replace(''', \"'\")  # Left single quotation mark\ncontent = content.replace('\"', '\"')  # Left double quotation mark\ncontent = content.replace('\"', '\"')  # Right double quotation mark\nwith open(file_path, 'w', encoding='utf-8') as f:\n    f.write(content)\nprint(\"✅ Fixed apostrophes and quotes properly\")",
+        "detail": "fix_quotes",
+        "documentation": {}
+    },
+    {
+        "label": "content",
+        "kind": 5,
+        "importPath": "fix_quotes",
+        "description": "fix_quotes",
+        "peekOfCode": "content = content.replace(''', \"'\")  # Left single quotation mark\ncontent = content.replace('\"', '\"')  # Left double quotation mark\ncontent = content.replace('\"', '\"')  # Right double quotation mark\nwith open(file_path, 'w', encoding='utf-8') as f:\n    f.write(content)\nprint(\"✅ Fixed apostrophes and quotes properly\")",
+        "detail": "fix_quotes",
+        "documentation": {}
+    },
+    {
+        "label": "content",
+        "kind": 5,
+        "importPath": "fix_quotes",
+        "description": "fix_quotes",
+        "peekOfCode": "content = content.replace('\"', '\"')  # Left double quotation mark\ncontent = content.replace('\"', '\"')  # Right double quotation mark\nwith open(file_path, 'w', encoding='utf-8') as f:\n    f.write(content)\nprint(\"✅ Fixed apostrophes and quotes properly\")",
+        "detail": "fix_quotes",
+        "documentation": {}
+    },
+    {
+        "label": "content",
+        "kind": 5,
+        "importPath": "fix_quotes",
+        "description": "fix_quotes",
+        "peekOfCode": "content = content.replace('\"', '\"')  # Right double quotation mark\nwith open(file_path, 'w', encoding='utf-8') as f:\n    f.write(content)\nprint(\"✅ Fixed apostrophes and quotes properly\")",
+        "detail": "fix_quotes",
+        "documentation": {}
+    }
+]

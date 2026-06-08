@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-[1440px] px-3 sm:px-5 lg:px-8">
         {/* Hero Image with enhanced effects */}
         <div className="mb-8 transform transition-transform duration-500 hover:scale-[1.02]">
-          <div className="rounded-2xl bg-gradient-to-br from-white via-white to-sky-50/50 p-3 shadow-[0_40px_120px_rgba(6,120,201,0.25)] ring-1 ring-white dark:from-white/10 dark:via-white/5 dark:to-sky-950/30 dark:shadow-[0_40px_120px_rgba(6,120,201,0.15)] dark:ring-sky-300/20 lg:p-4">
+          <div className="rounded-2xl bg-gradient-to-br from-white via-white to-sky-50/50 p-2 shadow-[0_40px_120px_rgba(6,120,201,0.25)] ring-1 ring-white dark:from-white/10 dark:via-white/5 dark:to-sky-950/30 dark:shadow-[0_40px_120px_rgba(6,120,201,0.15)] dark:ring-sky-300/20 sm:p-3 lg:p-4">
             <div className="relative overflow-hidden rounded-xl">
               {/* Shine effect overlay */}
               <div className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
@@ -30,7 +30,7 @@ export default function Hero() {
               <ImageWithBlur
                 src={IMAGES.hero}
                 alt="Nha khoa iSmile"
-                className="h-[50vh] min-h-80 rounded-lg sm:h-[60vh] lg:h-[70vh] object-cover"
+                className="h-[30vh] sm:h-[50vh] lg:h-[70vh] w-full rounded-lg object-cover"
                 imageClassName="object-center"
                 loading="eager"
               />

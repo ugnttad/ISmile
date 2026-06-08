@@ -6,5 +6,5 @@ export const CONTACT = {
   email: 'nhakhoaismile@gmail.com',
   emailHref: 'mailto:nhakhoaismile@gmail.com',
   facebook: 'https://www.facebook.com/nhakhoaismilevn',
-  hours: '8:00 - 20:00 hằng ngày',
+  hours: '8:00 - 19:00 hằng ngày',
 };
