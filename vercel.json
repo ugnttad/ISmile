@@ -1,8 +1,17 @@
 {
-  "installCommand": "npm install --prefix FE",
+  "installCommand": "npm install --prefix FE && npm install --prefix BE",
   "buildCommand": "npm run build --prefix FE",
   "outputDirectory": "FE/dist",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "BE/src/**"
+    }
+  },
   "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

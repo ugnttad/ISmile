@@ -11,7 +11,7 @@ export default function CampaignCarousel() {
   const slides = useMemo(() => CAMPAIGN_IMAGES, []);
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const { language, t } = useUiPreferences();
+  const { t } = useUiPreferences();
 
   useEffect(() => {
     if (!playing || slides.length <= 1) return undefined;
@@ -24,7 +24,7 @@ export default function CampaignCarousel() {
   }, [playing, slides.length]);
 
   const current = slides[active];
-  const currentCopy = language === 'vi' ? current : t(`campaign.typeCopy.${current.type}`);
+  const currentCopy = t(`campaign.typeCopy.${current.type}`);
   const goTo = (index) => setActive((index + slides.length) % slides.length);
 
   return (
@@ -102,16 +102,14 @@ export default function CampaignCarousel() {
                   className={`h-1.5 rounded-full transition-colors ${
                     active === index ? 'bg-primary' : 'bg-sky-100 hover:bg-sky-200'
                   }`}
-                  aria-label={`${t('campaign.chooseImage')} ${index + 1}: ${
-                    language === 'vi' ? slide.title : t(`campaign.typeCopy.${slide.type}.title`)
-                  }`}
+                  aria-label={`${t('campaign.chooseImage')} ${index + 1}: ${t(`campaign.typeCopy.${slide.type}.title`)}`}
                 />
               ))}
             </div>
 
             <div className="mt-6 max-h-[388px] space-y-2 overflow-y-auto pr-1">
               {slides.map((slide, index) => {
-                const slideCopy = language === 'vi' ? slide : t(`campaign.typeCopy.${slide.type}`);
+                const slideCopy = t(`campaign.typeCopy.${slide.type}`);
 
                 return (
                   <button

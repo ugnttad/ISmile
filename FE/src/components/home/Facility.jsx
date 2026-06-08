@@ -7,7 +7,7 @@ const facilityIcons = [ShieldCheck, Sparkles, Building2];
 
 export default function Facility() {
   const { t } = useUiPreferences();
-  const facilityCopy = t('facility.cards');
+  const facilityCopy = Array.isArray(t('facility.cards')) ? t('facility.cards') : [];
   const facilities = [
     { icon: facilityIcons[0], image: CLINIC_IMAGES.treatmentRoom, ...facilityCopy[0] },
     { icon: facilityIcons[1], image: CLINIC_IMAGES.reception, ...facilityCopy[1] },

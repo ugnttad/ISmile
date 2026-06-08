@@ -8,10 +8,22 @@ import catalogRoutes from './routes/catalogRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
+const fallbackOrigins = ['http://localhost:5173', 'https://ismile-dusky.vercel.app'];
+const allowedOrigins = (process.env.CORS_ORIGIN || fallbackOrigins.join(','))
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
 }));
 app.use(morgan('dev'));

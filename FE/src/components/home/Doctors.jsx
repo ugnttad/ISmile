@@ -2,39 +2,66 @@ import { useEffect, useMemo, useState } from 'react';
 import { Award, BadgeCheck, CalendarCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { api } from '../../api/client';
+import { ACTIVE_DOCTOR_PROFILES } from '../../constants/clinicData';
 import { DOCTOR_IMAGES } from '../../constants/images';
 import { useUiPreferences } from '../../context/UiPreferencesContext';
 import ImageWithBlur from '../common/ImageWithBlur';
 
-const ACTIVE_DOCTORS = ['lê nhi', 'le nhi', 'anh dũng', 'anh dung'];
+const ACTIVE_DOCTORS = ['le nhi', 'anh dung'];
+
+function normalizeText(value) {
+  return `${value || ''}`
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[đĐ]/g, 'd')
+    .toLowerCase();
+}
 
 function isVisibleDoctor(doctor) {
-  const name = `${doctor.full_name || ''}`.toLowerCase();
+  const name = normalizeText(doctor.full_name);
   return ACTIVE_DOCTORS.some((keyword) => name.includes(keyword));
 }
 
 function getDoctorImage(doctor) {
-  const key = `${doctor.full_name || ''} ${doctor.title || ''}`.toLowerCase();
+  const key = normalizeText(`${doctor.full_name || ''} ${doctor.title || ''}`);
 
   if (key.includes('nhi')) return DOCTOR_IMAGES.leNhi;
-  if (key.includes('dung') || key.includes('dũng')) return DOCTOR_IMAGES.anhDung;
+  if (key.includes('dung')) return DOCTOR_IMAGES.anhDung;
 
   return doctor.image_url || DOCTOR_IMAGES.anhDung;
 }
 
+function doctorIdentity(doctor) {
+  return normalizeText(doctor.full_name).replace(/^bs\.\s*/, '').trim();
+}
+
 export default function Doctors() {
-  const [doctors, setDoctors] = useState([]);
+  const [doctors, setDoctors] = useState(ACTIVE_DOCTOR_PROFILES);
   const [loading, setLoading] = useState(true);
   const { t } = useUiPreferences();
 
   useEffect(() => {
     api.getDoctors()
-      .then((res) => setDoctors(res.data.filter(isVisibleDoctor)))
-      .catch(() => setDoctors([]))
+      .then((res) => {
+        const apiDoctors = Array.isArray(res.data) ? res.data.filter(isVisibleDoctor) : [];
+        setDoctors(apiDoctors.length ? apiDoctors : ACTIVE_DOCTOR_PROFILES);
+      })
+      .catch(() => setDoctors(ACTIVE_DOCTOR_PROFILES))
       .finally(() => setLoading(false));
   }, []);
 
-  const visibleDoctors = useMemo(() => doctors.slice(0, 2), [doctors]);
+  const visibleDoctors = useMemo(() => {
+    const merged = [...doctors];
+
+    ACTIVE_DOCTOR_PROFILES.forEach((fallbackDoctor) => {
+      const fallbackName = doctorIdentity(fallbackDoctor);
+      if (!merged.some((doctor) => doctorIdentity(doctor).includes(fallbackName))) {
+        merged.push(fallbackDoctor);
+      }
+    });
+
+    return merged.filter(isVisibleDoctor).slice(0, 2);
+  }, [doctors]);
 
   return (
     <section id="bac-si" className="bg-primary-dark py-16 text-white dark:bg-[#061827] lg:py-24">
@@ -52,25 +79,25 @@ export default function Doctors() {
           <p className="text-sm leading-7 text-white/75 lg:text-base">{t('doctors.desc')}</p>
         </div>
 
-        {loading ? (
-          <div className="grid gap-5 lg:grid-cols-2">
+        {loading && visibleDoctors.length === 0 ? (
+          <div className="grid gap-6 lg:grid-cols-2">
             {[1, 2].map((item) => (
               <div key={item} className="h-[640px] animate-pulse rounded-lg bg-white/10" />
             ))}
           </div>
         ) : (
-          <div className="grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             {visibleDoctors.map((doctor, index) => (
               <article
-                key={doctor.id}
-                className="doctor-card group flex min-h-[640px] flex-col overflow-hidden rounded-lg bg-white text-slate-800 shadow-[0_26px_80px_rgba(0,0,0,0.22)] ring-1 ring-white/10 transition-shadow duration-300 hover:shadow-[0_34px_96px_rgba(0,0,0,0.28)] dark:bg-[#0d2237] dark:text-slate-100"
+                key={doctor.id || doctor.full_name}
+                className="doctor-card group overflow-hidden rounded-lg bg-white text-slate-800 shadow-[0_26px_80px_rgba(0,0,0,0.22)] ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.012] hover:shadow-[0_34px_96px_rgba(0,0,0,0.28)] dark:bg-[#0d2237] dark:text-slate-100"
               >
-                <div className="grid flex-1 lg:grid-cols-[0.88fr_1.12fr]">
+                <div className="grid min-h-[640px] lg:grid-cols-[0.92fr_1.08fr]">
                   <ImageWithBlur
                     src={getDoctorImage(doctor)}
                     alt={doctor.full_name}
                     className="h-[440px] lg:h-full"
-                    imageClassName="object-top transition-transform duration-700 group-hover:scale-[1.045]"
+                    imageClassName="object-top transition-transform duration-700 group-hover:scale-[1.055]"
                   />
 
                   <div className="flex min-h-[360px] flex-col justify-between p-6 lg:p-8">

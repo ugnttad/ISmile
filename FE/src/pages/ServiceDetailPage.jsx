@@ -19,7 +19,7 @@ export default function ServiceDetailPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Link to="/dich-vu" className="mb-6 inline-flex items-center gap-2 text-sm font-black text-primary">
           <ArrowLeft className="h-4 w-4" />
-          Tất cả dịch vụ
+          {t('services.allServices')}
         </Link>
 
         <div className="grid gap-5 lg:grid-cols-[1.12fr_0.88fr] lg:items-stretch">
@@ -69,7 +69,7 @@ export default function ServiceDetailPage() {
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
           <div className="rounded-lg border border-sky-100 bg-white p-6 shadow-sm dark:border-sky-300/15 dark:bg-[#0d2237]">
-            <h2 className="text-2xl font-black text-ink dark:text-white">Quy trình cơ bản</h2>
+            <h2 className="text-2xl font-black text-ink dark:text-white">{t('services.process')}</h2>
             <div className="mt-5 space-y-3">
               {service.process.map((step, index) => (
                 <div key={step} className="flex items-center gap-3">

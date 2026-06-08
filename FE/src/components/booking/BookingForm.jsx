@@ -12,6 +12,7 @@ import {
   User,
 } from 'lucide-react';
 import { api } from '../../api/client';
+import { ACTIVE_DOCTOR_PROFILES, BOOKING_SERVICES } from '../../constants/clinicData';
 import { useUiPreferences } from '../../context/UiPreferencesContext';
 
 const TIME_SLOTS = [
@@ -22,16 +23,29 @@ const TIME_SLOTS = [
 
 const inputBase = 'w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm outline-none transition-all placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-sky-300/15 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500';
 const inputWithIcon = 'w-full rounded-lg border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-800 shadow-sm outline-none transition-all placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-sky-300/15 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500';
-const activeDoctorNames = ['lê nhi', 'le nhi', 'anh dũng', 'anh dung'];
+const activeDoctorNames = ['le nhi', 'anh dung'];
+
+function normalizeText(value) {
+  return `${value || ''}`
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase();
+}
 
 function isVisibleDoctor(doctor) {
-  const name = `${doctor.full_name || ''}`.toLowerCase();
+  const name = normalizeText(doctor.full_name);
   return activeDoctorNames.some((keyword) => name.includes(keyword));
 }
 
+function isUuid(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
 export default function BookingForm() {
-  const [services, setServices] = useState([]);
-  const [doctors, setDoctors] = useState([]);
+  const [services, setServices] = useState(BOOKING_SERVICES);
+  const [doctors, setDoctors] = useState(ACTIVE_DOCTOR_PROFILES);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -50,10 +64,15 @@ export default function BookingForm() {
   useEffect(() => {
     Promise.all([api.getServices(), api.getDoctors()])
       .then(([svcRes, docRes]) => {
-        setServices(svcRes.data);
-        setDoctors(docRes.data.filter(isVisibleDoctor));
+        const apiServices = Array.isArray(svcRes.data) ? svcRes.data : [];
+        const apiDoctors = Array.isArray(docRes.data) ? docRes.data.filter(isVisibleDoctor) : [];
+        setServices(apiServices.length ? apiServices : BOOKING_SERVICES);
+        setDoctors(apiDoctors.length ? apiDoctors : ACTIVE_DOCTOR_PROFILES);
       })
-      .catch(() => {});
+      .catch(() => {
+        setServices(BOOKING_SERVICES);
+        setDoctors(ACTIVE_DOCTOR_PROFILES);
+      });
   }, []);
 
   const handleChange = (e) => {
@@ -70,8 +89,8 @@ export default function BookingForm() {
     try {
       await api.createAppointment({
         ...form,
-        serviceId: form.serviceId || null,
-        doctorId: form.doctorId || null,
+        serviceId: isUuid(form.serviceId) ? form.serviceId : null,
+        doctorId: isUuid(form.doctorId) ? form.doctorId : null,
         email: form.email || undefined,
       });
       setSuccess(true);
@@ -266,7 +285,7 @@ export default function BookingForm() {
               value={form.note}
               onChange={handleChange}
               rows={3}
-              className={`${inputBase} pl-11 resize-none`}
+              className={`${inputBase} resize-none pl-11`}
               placeholder={t('bookingForm.notePlaceholder')}
             />
           </div>

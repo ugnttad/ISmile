@@ -78,7 +78,7 @@ export const SERVICE_CATALOG = [
     image: `${SERVICE_ASSETS}/tram-rang-tham-my.webp`,
     summary: 'Xử lý khuyết điểm nhỏ trên răng trước với vật liệu thẩm mỹ, giữ nụ cười đều hơn.',
     intro: 'Trám thẩm mỹ tập trung vào vùng răng dễ thấy, đòi hỏi tạo hình kỹ và màu sắc hòa hợp với răng thật.',
-    benefits: ['Cải thiện răng mẻ/thưa nhỏ', 'Màu sắc tự nhiên', 'Không cần can thiệp quá sâu'],
+    benefits: ['Cải thiện răng mẻ hoặc thưa nhỏ', 'Màu sắc tự nhiên', 'Không cần can thiệp quá sâu'],
     process: ['Tư vấn màu và hình thể', 'Tạo hình vật liệu trám', 'Hoàn thiện và đánh bóng'],
   },
   {

@@ -9,7 +9,7 @@ const stepIcons = [MessageCircle, CalendarCheck, CheckCircle2];
 
 export default function Experience() {
   const { t } = useUiPreferences();
-  const steps = t('experience.steps');
+  const steps = Array.isArray(t('experience.steps')) ? t('experience.steps') : [];
 
   return (
     <section className="bg-white py-16 dark:bg-[#071827] lg:py-24">

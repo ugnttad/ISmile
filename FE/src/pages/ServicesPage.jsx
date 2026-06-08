@@ -18,11 +18,11 @@ export default function ServicesPage() {
               {t('services.eyebrow')}
             </span>
             <h1 className="mt-3 text-4xl font-black leading-tight text-ink dark:text-white lg:text-6xl">
-              Dịch vụ nha khoa iSmile
+              {t('services.pageTitle')}
             </h1>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 lg:text-base">
-            Chọn dịch vụ cần tư vấn để xem hình ảnh, lợi ích và quy trình cơ bản trước khi đặt lịch với phòng khám.
+            {t('services.pageDesc')}
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export default function ServicesPage() {
                 to={`/dich-vu/${featured.slug}`}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-black text-white shadow-xl shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary-dark"
               >
-                Xem chi tiết <ArrowRight className="h-4 w-4" />
+                {t('services.viewDetail')} <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/dat-lich"
@@ -74,7 +74,7 @@ export default function ServicesPage() {
                 <h3 className="text-xl font-black text-ink group-hover:text-primary dark:text-white dark:group-hover:text-primary-light">{service.name}</h3>
                 <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{service.summary}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-black text-primary">
-                  Xem dịch vụ <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  {t('services.viewService')} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
             </Link>

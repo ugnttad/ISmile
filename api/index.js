@@ -1,8 +1,5 @@
-import dotenv from 'dotenv';
-import app from '../src/app.js';
-import * as authService from '../src/services/authService.js';
-
-dotenv.config();
+import app from '../BE/src/app.js';
+import * as authService from '../BE/src/services/authService.js';
 
 let adminReady;
 

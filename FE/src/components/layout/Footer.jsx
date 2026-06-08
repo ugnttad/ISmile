@@ -20,7 +20,7 @@ export default function Footer() {
     { href: '/co-so', label: t('footer.infoLinks.2') },
     { href: '/dat-lich', label: t('footer.infoLinks.3') },
   ];
-  const serviceLinks = t('footer.serviceLinks');
+  const serviceLinks = Array.isArray(t('footer.serviceLinks')) ? t('footer.serviceLinks') : [];
 
   return (
     <footer className="bg-[linear-gradient(180deg,#0877c8_0%,#1db9e8_100%)] text-white dark:bg-[linear-gradient(180deg,#082f49_0%,#035c9c_100%)]">
@@ -68,11 +68,7 @@ export default function Footer() {
             <ul className="space-y-4 text-lg font-bold">
               {infoLinks.map((link) => (
                 <li key={link.label}>
-                  {link.href.startsWith('/') && !link.href.includes('#') ? (
-                    <Link to={link.href} className="transition-colors hover:text-primary-light">{link.label}</Link>
-                  ) : (
-                    <a href={link.href} className="transition-colors hover:text-primary-light">{link.label}</a>
-                  )}
+                  <Link to={link.href} className="transition-colors hover:text-primary-light">{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -83,7 +79,7 @@ export default function Footer() {
             <ul className="space-y-4 text-lg font-bold">
               {serviceLinks.map((label) => (
                 <li key={label}>
-                  <Link to="/dat-lich" className="transition-colors hover:text-primary-light">{label}</Link>
+                  <Link to="/dich-vu" className="transition-colors hover:text-primary-light">{label}</Link>
                 </li>
               ))}
             </ul>

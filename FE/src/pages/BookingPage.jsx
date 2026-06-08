@@ -7,7 +7,9 @@ import ImageWithBlur from '../components/common/ImageWithBlur';
 
 export default function BookingPage() {
   const { t } = useUiPreferences();
-  const steps = t('bookingPage.steps');
+  const steps = Array.isArray(t('bookingPage.steps'))
+    ? t('bookingPage.steps')
+    : ['Điền thông tin', 'Chọn dịch vụ', 'Nhận xác nhận'];
 
   return (
     <section className="min-h-[70vh] bg-[linear-gradient(180deg,#eef9ff_0%,#f8fcff_50%,#ffffff_100%)] py-12 dark:bg-[linear-gradient(180deg,#061827_0%,#0a2238_50%,#071827_100%)] lg:py-20">
